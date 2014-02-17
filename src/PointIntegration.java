@@ -13,8 +13,8 @@ public class PointIntegration {
 	public static void main(String[] args) throws ConnectionException {
 		System.out.println ("Staring...");
 		ConnectorConfig config = new ConnectorConfig();
-		config.setUsername("mds@o2l2c.demo");
-		config.setPassword("password123");
+		config.setUsername(System.getenv("SFDC_USERNAME"));
+		config.setPassword(System.getenv("SFDC_PASSWORD"));
 		EnterpriseConnection connection = Connector.newConnection(config);
 
 		
