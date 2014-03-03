@@ -199,36 +199,39 @@ public class PointIntegration {
 			// do products
 			ProductsType pst = new ProductsType();
 			
-			QueryResult qr_products = connection.query("Select Name, ProductCode__c, Price__c, Customer_Product__c From Product_SKU__c where Customer_Product__c = '" + c.getCustomer_Product__c() + "'");
+			QueryResult qr_products = connection.query("Select Subscription_Type__c, Activation_Type__c, Tariff_Code__c, Package_Code__c, Connection_Type__c, Connection_Reason__c, Name, ProductCode__c, Price__c, Customer_Product__c From Product_SKU__c where Customer_Product__c = '" + c.getCustomer_Product__c() + "'");
 
 			SObject[] recs_products = qr_products.getRecords();
 			for (SObject prod : recs_products) {
 				Product_SKU__c sku = (Product_SKU__c)prod;
 			
 				ProductType pt = new ProductType();
+							
 				
-				pt.setSubsOrderType(SubsOrderType.NEW_CONNECTION);
 				pt.setProductCode(sku.getProductCode__c());
 				pt.setQuantity(1);
 				pt.setProductPriceOverride(new BigDecimal(sku.getPrice__c()).setScale(2, RoundingMode.HALF_UP));
-				pt.setActivationType(ActivationType.IMMEDIATE);
-				//pt.setCategory(arg0);
-				//pt.setComment(arg0);
 				
-
-
-				SubscriptionConnectionType st = new SubscriptionConnectionType();
-				st.setTariffCode("NWRDAT");
-				st.setPackageCode("NWRPKG");
-				st.setUserName(con.getName());
-				
-				ConnectionDetailsType ctd = new ConnectionDetailsType();
-				ctd.setConnectionType("BO+");
-				ctd.setConnectionReason("NB");
-				
-				st.setConnectionDetails(ctd);
+				String subType = sku.getSubscription_Type__c();
+				if (subType != null) {
+					pt.setSubsOrderType(SubsOrderType.fromValue(subType));
+					pt.setActivationType(ActivationType.fromValue(sku.getActivation_Type__c()));
+					//pt.setCategory(arg0);
+					//pt.setComment(arg0);
 	
-				pt.setSubscription(st);
+					SubscriptionConnectionType st = new SubscriptionConnectionType();
+					st.setTariffCode(sku.getTariff_Code__c());
+					st.setPackageCode(sku.getPackage_Code__c());
+					st.setUserName(con.getName());
+					
+					ConnectionDetailsType ctd = new ConnectionDetailsType();
+					ctd.setConnectionType(sku.getConnection_Type__c());
+					ctd.setConnectionReason(sku.getConnection_Reason__c());
+					
+					st.setConnectionDetails(ctd);
+		
+					pt.setSubscription(st);
+				}
 
 				pst.getProduct().add(pt);
 			}
