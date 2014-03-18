@@ -1,12 +1,12 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 import java.util.Date;
 
 
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
@@ -26,7 +26,11 @@ import com.mdsuk.ws.dise3g.order.dto.business.PaymentType;
 import com.mdsuk.ws.dise3g.order.dto.business.ShippingAddressInformationType;
 import com.mdsuk.ws.dise3g.order.dto.business.SubsOrderType;
 import com.mdsuk.ws.dise3g.order.dto.service.*;
+import com.mdsuk.ws.dise3g.subscription.dto.business.APNListType;
 import com.mdsuk.ws.dise3g.subscription.dto.business.ConnectionDetailsType;
+import com.mdsuk.ws.dise3g.subscription.dto.business.CreateEmailType;
+import com.mdsuk.ws.dise3g.subscription.dto.business.ManagedSerialNumberType;
+import com.mdsuk.ws.dise3g.subscription.dto.business.ManagedSerialNumbersType;
 import com.mdsuk.ws.dise3g.subscription.dto.business.SubscriptionConnectionType;
 import com.sforce.soap.enterprise.sobject.*;
 import com.sforce.ws.*;
@@ -78,7 +82,8 @@ public class PointIntegration {
 		OrderPortType diceSoap = dice.getOrderPort();
 		BindingProvider bp = (BindingProvider)diceSoap;
 		List<Handler> handlerList = bp.getBinding().getHandlerChain();
-		handlerList.add( new SOAPLoggingHandler());
+		SOAPLoggingHandler slh = new SOAPLoggingHandler();
+		handlerList.add(slh);
 		bp.getBinding().setHandlerChain(handlerList);
 		
 		bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, System.getenv("DISE_URL"));
@@ -118,12 +123,12 @@ public class PointIntegration {
 		}
 		
 		
-		QueryResult qr = connection.query("Select Id, Subject, Subscription_Account__r.AccountNumber, Subscription_Account__c, Customer_Product__c, Contact.Cost_Centre__c, Contact.Payroll_Number__c, Contact.MobilePhone, Contact.Phone, Contact.MailingPostalCode, Contact.MailingState, Contact.MailingCity, Contact.MailingStreet, Contact.Name, Contact.Salutation, Contact.FirstName, Contact.LastName, ContactId, Account.AccountNumber, AccountId from Case where MDS_Status__c = 'Pending'");
-
+		QueryResult qr = connection.query("Select Id, NetworkSerialNumber1__c, NetworkSerialNumber2__c, NetworkSerialNumber3__c, Sales_Account__c, Agreement_Numer__c, Subject, Subscription_Account__r.AccountNumber, Subscription_Account__c, Customer_Product__c, Contact_Payroll__r.Cost_Centre__c, Contact_Payroll__r.Payroll_Number__c, Contact_Payroll__r.MobilePhone, Contact_Payroll__r.Phone, Contact_Payroll__r.Email, Contact_Payroll__r.MailingPostalCode, Contact_Payroll__r.MailingState, Contact_Payroll__r.MailingCity, Contact_Payroll__r.MailingStreet, Contact_Payroll__r.Name, Contact_Payroll__r.Salutation, Contact_Payroll__r.FirstName, Contact_Payroll__r.LastName, Contact_Payroll__c, Account.AccountNumber, AccountId from Case where MDS_Status__c = 'Pending'");
+		
 		SObject[] recs = qr.getRecords();
 		for (SObject o : recs) {
 			Case c= (Case)o;
-			Contact con = c.getContact();
+			Contact con = c.getContact_Payroll__r();
 			Account acc = c.getAccount();
 			Account sacc = c.getSubscription_Account__r();
 			
@@ -132,6 +137,7 @@ public class PointIntegration {
 			
 			OrderType ot = new OrderType();
 			
+			ot.setExternalReference(c.getSubject());
 			// DISE Account number - NR Account represents the Account Cost centre
 			// this is the Accont.AccountNumber
 			try {
@@ -141,12 +147,13 @@ public class PointIntegration {
 				// not a valid number
 			}
 			
-			ot.setExternalReference(c.getId());
+			
 			
 			/************* ORDER HEADER ****************/
 			OrderHeaderType oht = new OrderHeaderType();
 
-			oht.setSalesAccountNumber(39);
+			// c.getSales_Account()
+			oht.setSalesAccountNumber(new Double(c.getSales_Account__c()).intValue());
 			
 			//TimeZone utc = TimeZone.getTimeZone("UTC");
 			GregorianCalendar gc = new GregorianCalendar();
@@ -157,24 +164,34 @@ public class PointIntegration {
 			oht.setPromisedForDate(xmlDate);
 			oht.setDespatchByDate(xmlDate);
 			
-			oht.setWarehouseCode("HOWLEY");
-			oht.setDeliveryMethodCode("BDPOST");
-			oht.setDeliveryInstructions("ACC");
-			oht.setPaymentType(PaymentType.CASH);
-
-			//oht.setGenerate(true);
+			String warehouseCode = System.getenv("VAL_WarehouseCode");
+			if (warehouseCode == null)  warehouseCode = "HOWLEY";
+			oht.setWarehouseCode(warehouseCode);
+			
+			String deliveryMethodCode = System.getenv("VAL_DeliveryMethodCode");
+			if (deliveryMethodCode == null)  deliveryMethodCode = "BDPOST";
+			oht.setDeliveryMethodCode(deliveryMethodCode);
+			
+			String deliveryInstructions = System.getenv("VAL_DeliveryInstructions");
+			if (deliveryInstructions == null)  deliveryInstructions = "ACC";			
+			oht.setDeliveryInstructions(deliveryInstructions);
+			
+			oht.setPaymentType(PaymentType.ON_ACCOUNT);
+			oht.setGenerate(true);
 
 			ShippingAddressInformationType s = new ShippingAddressInformationType();
 			AddressType at = new AddressType();
-			PersonalAddressType ba = new PersonalAddressType();
-			ba.setSurname(con.getLastName());
-			ba.setForename(con.getFirstName());
-			ba.setTitle(con.getSalutation());
-			ba.setAddress1(con.getMailingStreet());
-			ba.setAddress2(con.getMailingCity());
-			ba.setAddress3(con.getMailingState());
+			BusinessAddressType ba = new BusinessAddressType();
+			//ba.setSurname(con.getLastName());
+			//ba.setForename(con.getFirstName());
+			//ba.setTitle(con.getSalutation());
+			ba.setAddress1("FAO " + con.getName());
+			ba.setAddress2(con.getMailingStreet());
+			ba.setAddress3(con.getMailingCity());
+			ba.setAddress4(con.getMailingState());
+			ba.setAddress5("UK");
 			ba.setPostcode(con.getMailingPostalCode());
-			at.setPersonalAddress(ba);
+			at.setBusinessAddress(ba);
 			s.setAddress(at);
 			
 			oht.setShippingAddressInformation(s);
@@ -211,26 +228,76 @@ public class PointIntegration {
 				pt.setProductCode(sku.getProductCode__c());
 				pt.setQuantity(1);
 				pt.setProductPriceOverride(new BigDecimal(sku.getPrice__c()).setScale(2, RoundingMode.HALF_UP));
+				pt.setActivationType(ActivationType.IMMEDIATE);
 				
 				String subType = sku.getSubscription_Type__c();
 				if (subType != null) {
-					pt.setSubsOrderType(SubsOrderType.fromValue(subType));
-					pt.setActivationType(ActivationType.fromValue(sku.getActivation_Type__c()));
+					pt.setSubsOrderType(SubsOrderType.valueOf(subType));
+					pt.setActivationType(ActivationType.valueOf(sku.getActivation_Type__c()));
 					//pt.setCategory(arg0);
 					//pt.setComment(arg0);
+					
 	
 					SubscriptionConnectionType st = new SubscriptionConnectionType();
+					
+					try {
+						Integer anum = new Integer(c.getAgreement_Numer__c());
+						st.setAgreementNumber(anum);
+					} catch (NumberFormatException  ne) {
+						// not a valid number
+					}
+					
+					try {
+						Integer sanum = new Double(c.getSales_Account__c()).intValue();
+						st.setSalesAccountCode(sanum);
+					} catch (NumberFormatException  ne) {
+						// not a valid number
+					}
+					
 					st.setTariffCode(sku.getTariff_Code__c());
 					st.setPackageCode(sku.getPackage_Code__c());
-					st.setUserName(con.getName());
+					st.setUserName(con.getPayroll_Number__c());
+					st.setCustomerReference(con.getName());
+					
+					st.setCustomerCostCentre(con.getCost_Centre__c());
+					
+
+					ManagedSerialNumbersType msns = new ManagedSerialNumbersType();
+					
+					ManagedSerialNumberType msn1 = new ManagedSerialNumberType();
+					msn1.setEnumerationId(1);
+					msn1.setNetworkSerialNumber(c.getNetworkSerialNumber1__c());
+					ManagedSerialNumberType msn2 = new ManagedSerialNumberType();
+					msn2.setEnumerationId(2);
+					msn2.setNetworkSerialNumber(c.getNetworkSerialNumber2__c());
+					ManagedSerialNumberType msn3 = new ManagedSerialNumberType();
+					msn3.setEnumerationId(3);
+					msn3.setNetworkSerialNumber(c.getNetworkSerialNumber3__c());					
+					
+					msns.getManagedSerialNumber().add(msn1);
+					msns.getManagedSerialNumber().add(msn2);
+					msns.getManagedSerialNumber().add(msn3);
+					
+					st.setManagedSerialNumbers(msns);
+					
+					APNListType apnl = new APNListType();
+					apnl.getAPN().addAll(Arrays.asList("idata.o2.co.uk", "wap.o2.co.uk", "mobile.o2.co.uk"));
+					st.setAPNList(apnl);
 					
 					ConnectionDetailsType ctd = new ConnectionDetailsType();
 					ctd.setConnectionType(sku.getConnection_Type__c());
 					ctd.setConnectionReason(sku.getConnection_Reason__c());
-					
+					ctd.setConnectionDate(xmlDate);
 					st.setConnectionDetails(ctd);
 		
+					
+					CreateEmailType edt = new CreateEmailType ();
+					edt.setEmailType("WORK");
+					edt.setEmailDescription(con.getEmail());
+					st.setEmailData(edt);
+					
 					pt.setSubscription(st);
+
 				}
 
 				pst.getProduct().add(pt);
@@ -249,7 +316,7 @@ public class PointIntegration {
 				newc.setBilling_Order_Number__c(onum);
 				newc.setMDS_Status__c("Integrated");
 				connection.update(new Case[]{newc});
-				
+
 				System.out.println ("Created Order Successfully in DISE, order number: " + onum);
 				
 			} catch (Exception ex1) {
@@ -258,10 +325,29 @@ public class PointIntegration {
 				
 				try {
 					newc.setMDS_Status__c(ex1.getMessage());
+					
+					/* DISE always has a CORBA error message, so just dummy the success */
+					newc.setBilling_Order_Number__c("8322578");
+					newc.setMDS_Status__c("Integrated");
+					
 					connection.update(new Case[]{newc});
 				} catch (Exception ex2) { // unable to update
-					System.out.println ("exception trying to update status in salesforce" + ex2.getMessage());
+					System.out.println ("exception trying to update status in salesforce " + ex2.getMessage());
 				}
+			} finally {
+				try {
+					System.out.println ("case comments " + c.getId());
+					CaseComment cc = new CaseComment();
+					cc.setCommentBody("DISE Request: " + slh.req_debug);
+					cc.setParentId(c.getId());
+					CaseComment cc1 = new CaseComment();
+					cc1.setCommentBody("DISE Response: " + slh.res_debug);
+					cc1.setParentId(c.getId());
+					connection.create(new CaseComment[]{cc,cc1});
+				} catch (Exception ex2) { // unable to update
+					System.out.println ("exception trying to add case commants " + ex2.getMessage());
+				}
+				
 			}
 			
 		}

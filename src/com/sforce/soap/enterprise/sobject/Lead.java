@@ -1571,6 +1571,86 @@ public class Lead extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : leadScoring__Campaign_Score__c of type {http://www.w3.org/2001/XMLSchema}double
+     * java type: java.lang.Double
+     */
+    private static final com.sforce.ws.bind.TypeInfo leadScoring__Campaign_Score__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","leadScoring__Campaign_Score__c","http://www.w3.org/2001/XMLSchema","double",0,1,true);
+
+    private boolean leadScoring__Campaign_Score__c__is_set = false;
+
+    private java.lang.Double leadScoring__Campaign_Score__c;
+
+    public java.lang.Double getLeadScoring__Campaign_Score__c() {
+      return leadScoring__Campaign_Score__c;
+    }
+
+    public void setLeadScoring__Campaign_Score__c(java.lang.Double leadScoring__Campaign_Score__c) {
+      this.leadScoring__Campaign_Score__c = leadScoring__Campaign_Score__c;
+      leadScoring__Campaign_Score__c__is_set = true;
+    }
+
+    /**
+     * element : leadScoring__Lead_Priority__c of type {http://www.w3.org/2001/XMLSchema}string
+     * java type: java.lang.String
+     */
+    private static final com.sforce.ws.bind.TypeInfo leadScoring__Lead_Priority__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","leadScoring__Lead_Priority__c","http://www.w3.org/2001/XMLSchema","string",0,1,true);
+
+    private boolean leadScoring__Lead_Priority__c__is_set = false;
+
+    private java.lang.String leadScoring__Lead_Priority__c;
+
+    public java.lang.String getLeadScoring__Lead_Priority__c() {
+      return leadScoring__Lead_Priority__c;
+    }
+
+    public void setLeadScoring__Lead_Priority__c(java.lang.String leadScoring__Lead_Priority__c) {
+      this.leadScoring__Lead_Priority__c = leadScoring__Lead_Priority__c;
+      leadScoring__Lead_Priority__c__is_set = true;
+    }
+
+    /**
+     * element : leadScoring__Lead_Score__c of type {http://www.w3.org/2001/XMLSchema}double
+     * java type: java.lang.Double
+     */
+    private static final com.sforce.ws.bind.TypeInfo leadScoring__Lead_Score__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","leadScoring__Lead_Score__c","http://www.w3.org/2001/XMLSchema","double",0,1,true);
+
+    private boolean leadScoring__Lead_Score__c__is_set = false;
+
+    private java.lang.Double leadScoring__Lead_Score__c;
+
+    public java.lang.Double getLeadScoring__Lead_Score__c() {
+      return leadScoring__Lead_Score__c;
+    }
+
+    public void setLeadScoring__Lead_Score__c(java.lang.Double leadScoring__Lead_Score__c) {
+      this.leadScoring__Lead_Score__c = leadScoring__Lead_Score__c;
+      leadScoring__Lead_Score__c__is_set = true;
+    }
+
+    /**
+     * element : leadScoring__Total_Lead_Score__c of type {http://www.w3.org/2001/XMLSchema}double
+     * java type: java.lang.Double
+     */
+    private static final com.sforce.ws.bind.TypeInfo leadScoring__Total_Lead_Score__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","leadScoring__Total_Lead_Score__c","http://www.w3.org/2001/XMLSchema","double",0,1,true);
+
+    private boolean leadScoring__Total_Lead_Score__c__is_set = false;
+
+    private java.lang.Double leadScoring__Total_Lead_Score__c;
+
+    public java.lang.Double getLeadScoring__Total_Lead_Score__c() {
+      return leadScoring__Total_Lead_Score__c;
+    }
+
+    public void setLeadScoring__Total_Lead_Score__c(java.lang.Double leadScoring__Total_Lead_Score__c) {
+      this.leadScoring__Total_Lead_Score__c = leadScoring__Total_Lead_Score__c;
+      leadScoring__Total_Lead_Score__c__is_set = true;
+    }
+
+    /**
      */
     @Override
     public void write(javax.xml.namespace.QName __element,
@@ -1664,6 +1744,10 @@ public class Lead extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeString(__out, Title__typeInfo, Title, Title__is_set);
        __typeMapper.writeObject(__out, UndecidedEventRelations__typeInfo, UndecidedEventRelations, UndecidedEventRelations__is_set);
        __typeMapper.writeString(__out, Website__typeInfo, Website, Website__is_set);
+       __typeMapper.writeObject(__out, leadScoring__Campaign_Score__c__typeInfo, leadScoring__Campaign_Score__c, leadScoring__Campaign_Score__c__is_set);
+       __typeMapper.writeString(__out, leadScoring__Lead_Priority__c__typeInfo, leadScoring__Lead_Priority__c, leadScoring__Lead_Priority__c__is_set);
+       __typeMapper.writeObject(__out, leadScoring__Lead_Score__c__typeInfo, leadScoring__Lead_Score__c, leadScoring__Lead_Score__c__is_set);
+       __typeMapper.writeObject(__out, leadScoring__Total_Lead_Score__c__typeInfo, leadScoring__Total_Lead_Score__c, leadScoring__Total_Lead_Score__c__is_set);
     }
 
     @Override
@@ -1989,6 +2073,22 @@ public class Lead extends com.sforce.soap.enterprise.sobject.SObject {
         if (__typeMapper.isElement(__in, Website__typeInfo)) {
             setWebsite(__typeMapper.readString(__in, Website__typeInfo, java.lang.String.class));
         }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, leadScoring__Campaign_Score__c__typeInfo)) {
+            setLeadScoring__Campaign_Score__c((java.lang.Double)__typeMapper.readObject(__in, leadScoring__Campaign_Score__c__typeInfo, java.lang.Double.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, leadScoring__Lead_Priority__c__typeInfo)) {
+            setLeadScoring__Lead_Priority__c(__typeMapper.readString(__in, leadScoring__Lead_Priority__c__typeInfo, java.lang.String.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, leadScoring__Lead_Score__c__typeInfo)) {
+            setLeadScoring__Lead_Score__c((java.lang.Double)__typeMapper.readObject(__in, leadScoring__Lead_Score__c__typeInfo, java.lang.Double.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, leadScoring__Total_Lead_Score__c__typeInfo)) {
+            setLeadScoring__Total_Lead_Score__c((java.lang.Double)__typeMapper.readObject(__in, leadScoring__Total_Lead_Score__c__typeInfo, java.lang.Double.class));
+        }
     }
 
     @Override
@@ -2151,6 +2251,14 @@ public class Lead extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(UndecidedEventRelations)+"'\n");
       sb.append(" Website=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Website)+"'\n");
+      sb.append(" leadScoring__Campaign_Score__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(leadScoring__Campaign_Score__c)+"'\n");
+      sb.append(" leadScoring__Lead_Priority__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(leadScoring__Lead_Priority__c)+"'\n");
+      sb.append(" leadScoring__Lead_Score__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(leadScoring__Lead_Score__c)+"'\n");
+      sb.append(" leadScoring__Total_Lead_Score__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(leadScoring__Total_Lead_Score__c)+"'\n");
       sb.append("]\n");
       return sb.toString();
     }

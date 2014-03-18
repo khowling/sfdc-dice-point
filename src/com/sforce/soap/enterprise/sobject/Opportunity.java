@@ -311,6 +311,46 @@ public class Opportunity extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : Discount_Status__c of type {http://www.w3.org/2001/XMLSchema}string
+     * java type: java.lang.String
+     */
+    private static final com.sforce.ws.bind.TypeInfo Discount_Status__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","Discount_Status__c","http://www.w3.org/2001/XMLSchema","string",0,1,true);
+
+    private boolean Discount_Status__c__is_set = false;
+
+    private java.lang.String Discount_Status__c;
+
+    public java.lang.String getDiscount_Status__c() {
+      return Discount_Status__c;
+    }
+
+    public void setDiscount_Status__c(java.lang.String Discount_Status__c) {
+      this.Discount_Status__c = Discount_Status__c;
+      Discount_Status__c__is_set = true;
+    }
+
+    /**
+     * element : Discount__c of type {http://www.w3.org/2001/XMLSchema}double
+     * java type: java.lang.Double
+     */
+    private static final com.sforce.ws.bind.TypeInfo Discount__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","Discount__c","http://www.w3.org/2001/XMLSchema","double",0,1,true);
+
+    private boolean Discount__c__is_set = false;
+
+    private java.lang.Double Discount__c;
+
+    public java.lang.Double getDiscount__c() {
+      return Discount__c;
+    }
+
+    public void setDiscount__c(java.lang.Double Discount__c) {
+      this.Discount__c = Discount__c;
+      Discount__c__is_set = true;
+    }
+
+    /**
      * element : Events of type {urn:enterprise.soap.sforce.com}QueryResult
      * java type: com.sforce.soap.enterprise.QueryResult
      */
@@ -1201,6 +1241,8 @@ public class Opportunity extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeString(__out, CreatedById__typeInfo, CreatedById, CreatedById__is_set);
        __typeMapper.writeObject(__out, CreatedDate__typeInfo, CreatedDate, CreatedDate__is_set);
        __typeMapper.writeString(__out, Description__typeInfo, Description, Description__is_set);
+       __typeMapper.writeString(__out, Discount_Status__c__typeInfo, Discount_Status__c, Discount_Status__c__is_set);
+       __typeMapper.writeObject(__out, Discount__c__typeInfo, Discount__c, Discount__c__is_set);
        __typeMapper.writeObject(__out, Events__typeInfo, Events, Events__is_set);
        __typeMapper.writeObject(__out, FeedSubscriptionsForEntity__typeInfo, FeedSubscriptionsForEntity, FeedSubscriptionsForEntity__is_set);
        __typeMapper.writeObject(__out, Feeds__typeInfo, Feeds, Feeds__is_set);
@@ -1316,6 +1358,14 @@ public class Opportunity extends com.sforce.soap.enterprise.sobject.SObject {
         __in.peekTag();
         if (__typeMapper.isElement(__in, Description__typeInfo)) {
             setDescription(__typeMapper.readString(__in, Description__typeInfo, java.lang.String.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, Discount_Status__c__typeInfo)) {
+            setDiscount_Status__c(__typeMapper.readString(__in, Discount_Status__c__typeInfo, java.lang.String.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, Discount__c__typeInfo)) {
+            setDiscount__c((java.lang.Double)__typeMapper.readObject(__in, Discount__c__typeInfo, java.lang.Double.class));
         }
         __in.peekTag();
         if (__typeMapper.isElement(__in, Events__typeInfo)) {
@@ -1525,6 +1575,10 @@ public class Opportunity extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(CreatedDate)+"'\n");
       sb.append(" Description=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Description)+"'\n");
+      sb.append(" Discount_Status__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(Discount_Status__c)+"'\n");
+      sb.append(" Discount__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(Discount__c)+"'\n");
       sb.append(" Events=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Events)+"'\n");
       sb.append(" FeedSubscriptionsForEntity=");

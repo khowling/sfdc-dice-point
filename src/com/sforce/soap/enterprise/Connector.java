@@ -8,7 +8,7 @@ import com.sforce.ws.ConnectionException;
  */
 public class Connector {
 
-  public static final String END_POINT = "https://login.salesforce.com/services/Soap/c/29.0/0DFb0000000PCiP";
+  public static final String END_POINT = "https://login.salesforce.com/services/Soap/c/29.0/0DFb0000000PCjw";
 
   public static EnterpriseConnection newConnection(String username, String password) throws ConnectionException {
     ConnectorConfig config = new ConnectorConfig();

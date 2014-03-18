@@ -71,6 +71,26 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : Agreement_Numer__c of type {http://www.w3.org/2001/XMLSchema}string
+     * java type: java.lang.String
+     */
+    private static final com.sforce.ws.bind.TypeInfo Agreement_Numer__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","Agreement_Numer__c","http://www.w3.org/2001/XMLSchema","string",0,1,true);
+
+    private boolean Agreement_Numer__c__is_set = false;
+
+    private java.lang.String Agreement_Numer__c;
+
+    public java.lang.String getAgreement_Numer__c() {
+      return Agreement_Numer__c;
+    }
+
+    public void setAgreement_Numer__c(java.lang.String Agreement_Numer__c) {
+      this.Agreement_Numer__c = Agreement_Numer__c;
+      Agreement_Numer__c__is_set = true;
+    }
+
+    /**
      * element : Asset of type {urn:sobject.enterprise.soap.sforce.com}Asset
      * java type: com.sforce.soap.enterprise.sobject.Asset
      */
@@ -1151,6 +1171,66 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : NetworkSerialNumber1__c of type {http://www.w3.org/2001/XMLSchema}string
+     * java type: java.lang.String
+     */
+    private static final com.sforce.ws.bind.TypeInfo NetworkSerialNumber1__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","NetworkSerialNumber1__c","http://www.w3.org/2001/XMLSchema","string",0,1,true);
+
+    private boolean NetworkSerialNumber1__c__is_set = false;
+
+    private java.lang.String NetworkSerialNumber1__c;
+
+    public java.lang.String getNetworkSerialNumber1__c() {
+      return NetworkSerialNumber1__c;
+    }
+
+    public void setNetworkSerialNumber1__c(java.lang.String NetworkSerialNumber1__c) {
+      this.NetworkSerialNumber1__c = NetworkSerialNumber1__c;
+      NetworkSerialNumber1__c__is_set = true;
+    }
+
+    /**
+     * element : NetworkSerialNumber2__c of type {http://www.w3.org/2001/XMLSchema}string
+     * java type: java.lang.String
+     */
+    private static final com.sforce.ws.bind.TypeInfo NetworkSerialNumber2__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","NetworkSerialNumber2__c","http://www.w3.org/2001/XMLSchema","string",0,1,true);
+
+    private boolean NetworkSerialNumber2__c__is_set = false;
+
+    private java.lang.String NetworkSerialNumber2__c;
+
+    public java.lang.String getNetworkSerialNumber2__c() {
+      return NetworkSerialNumber2__c;
+    }
+
+    public void setNetworkSerialNumber2__c(java.lang.String NetworkSerialNumber2__c) {
+      this.NetworkSerialNumber2__c = NetworkSerialNumber2__c;
+      NetworkSerialNumber2__c__is_set = true;
+    }
+
+    /**
+     * element : NetworkSerialNumber3__c of type {http://www.w3.org/2001/XMLSchema}string
+     * java type: java.lang.String
+     */
+    private static final com.sforce.ws.bind.TypeInfo NetworkSerialNumber3__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","NetworkSerialNumber3__c","http://www.w3.org/2001/XMLSchema","string",0,1,true);
+
+    private boolean NetworkSerialNumber3__c__is_set = false;
+
+    private java.lang.String NetworkSerialNumber3__c;
+
+    public java.lang.String getNetworkSerialNumber3__c() {
+      return NetworkSerialNumber3__c;
+    }
+
+    public void setNetworkSerialNumber3__c(java.lang.String NetworkSerialNumber3__c) {
+      this.NetworkSerialNumber3__c = NetworkSerialNumber3__c;
+      NetworkSerialNumber3__c__is_set = true;
+    }
+
+    /**
      * element : OpenActivities of type {urn:enterprise.soap.sforce.com}QueryResult
      * java type: com.sforce.soap.enterprise.QueryResult
      */
@@ -1491,6 +1571,26 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : Sales_Account__c of type {http://www.w3.org/2001/XMLSchema}double
+     * java type: java.lang.Double
+     */
+    private static final com.sforce.ws.bind.TypeInfo Sales_Account__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","Sales_Account__c","http://www.w3.org/2001/XMLSchema","double",0,1,true);
+
+    private boolean Sales_Account__c__is_set = false;
+
+    private java.lang.Double Sales_Account__c;
+
+    public java.lang.Double getSales_Account__c() {
+      return Sales_Account__c;
+    }
+
+    public void setSales_Account__c(java.lang.Double Sales_Account__c) {
+      this.Sales_Account__c = Sales_Account__c;
+      Sales_Account__c__is_set = true;
+    }
+
+    /**
      * element : Shares of type {urn:enterprise.soap.sforce.com}QueryResult
      * java type: com.sforce.soap.enterprise.QueryResult
      */
@@ -1508,6 +1608,26 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
     public void setShares(com.sforce.soap.enterprise.QueryResult Shares) {
       this.Shares = Shares;
       Shares__is_set = true;
+    }
+
+    /**
+     * element : Shipping_Date__c of type {http://www.w3.org/2001/XMLSchema}date
+     * java type: java.util.Calendar
+     */
+    private static final com.sforce.ws.bind.TypeInfo Shipping_Date__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","Shipping_Date__c","http://www.w3.org/2001/XMLSchema","date",0,1,true);
+
+    private boolean Shipping_Date__c__is_set = false;
+
+    private java.util.Calendar Shipping_Date__c;
+
+    public java.util.Calendar getShipping_Date__c() {
+      return Shipping_Date__c;
+    }
+
+    public void setShipping_Date__c(java.util.Calendar Shipping_Date__c) {
+      this.Shipping_Date__c = Shipping_Date__c;
+      Shipping_Date__c__is_set = true;
     }
 
     /**
@@ -1869,6 +1989,7 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeObject(__out, Account__typeInfo, Account, Account__is_set);
        __typeMapper.writeString(__out, AccountId__typeInfo, AccountId, AccountId__is_set);
        __typeMapper.writeObject(__out, ActivityHistories__typeInfo, ActivityHistories, ActivityHistories__is_set);
+       __typeMapper.writeString(__out, Agreement_Numer__c__typeInfo, Agreement_Numer__c, Agreement_Numer__c__is_set);
        __typeMapper.writeObject(__out, Asset__typeInfo, Asset, Asset__is_set);
        __typeMapper.writeString(__out, AssetId__typeInfo, AssetId, AssetId__is_set);
        __typeMapper.writeObject(__out, AttachedContentDocuments__typeInfo, AttachedContentDocuments, AttachedContentDocuments__is_set);
@@ -1923,6 +2044,9 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeObject(__out, LastViewedDate__typeInfo, LastViewedDate, LastViewedDate__is_set);
        __typeMapper.writeString(__out, MDS_Status__c__typeInfo, MDS_Status__c, MDS_Status__c__is_set);
        __typeMapper.writeString(__out, MilestoneStatus__typeInfo, MilestoneStatus, MilestoneStatus__is_set);
+       __typeMapper.writeString(__out, NetworkSerialNumber1__c__typeInfo, NetworkSerialNumber1__c, NetworkSerialNumber1__c__is_set);
+       __typeMapper.writeString(__out, NetworkSerialNumber2__c__typeInfo, NetworkSerialNumber2__c, NetworkSerialNumber2__c__is_set);
+       __typeMapper.writeString(__out, NetworkSerialNumber3__c__typeInfo, NetworkSerialNumber3__c, NetworkSerialNumber3__c__is_set);
        __typeMapper.writeObject(__out, OpenActivities__typeInfo, OpenActivities, OpenActivities__is_set);
        __typeMapper.writeString(__out, Origin__typeInfo, Origin, Origin__is_set);
        __typeMapper.writeObject(__out, Owner__typeInfo, Owner, Owner__is_set);
@@ -1940,7 +2064,9 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeObject(__out, RecordType__typeInfo, RecordType, RecordType__is_set);
        __typeMapper.writeString(__out, RecordTypeId__typeInfo, RecordTypeId, RecordTypeId__is_set);
        __typeMapper.writeString(__out, Record_Type__c__typeInfo, Record_Type__c, Record_Type__c__is_set);
+       __typeMapper.writeObject(__out, Sales_Account__c__typeInfo, Sales_Account__c, Sales_Account__c__is_set);
        __typeMapper.writeObject(__out, Shares__typeInfo, Shares, Shares__is_set);
+       __typeMapper.writeObject(__out, Shipping_Date__c__typeInfo, Shipping_Date__c, Shipping_Date__c__is_set);
        __typeMapper.writeObject(__out, SlaExitDate__typeInfo, SlaExitDate, SlaExitDate__is_set);
        __typeMapper.writeObject(__out, SlaStartDate__typeInfo, SlaStartDate, SlaStartDate__is_set);
        __typeMapper.writeObject(__out, Solutions__typeInfo, Solutions, Solutions__is_set);
@@ -1982,6 +2108,10 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
         __in.peekTag();
         if (__typeMapper.isElement(__in, ActivityHistories__typeInfo)) {
             setActivityHistories((com.sforce.soap.enterprise.QueryResult)__typeMapper.readObject(__in, ActivityHistories__typeInfo, com.sforce.soap.enterprise.QueryResult.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, Agreement_Numer__c__typeInfo)) {
+            setAgreement_Numer__c(__typeMapper.readString(__in, Agreement_Numer__c__typeInfo, java.lang.String.class));
         }
         __in.peekTag();
         if (__typeMapper.isElement(__in, Asset__typeInfo)) {
@@ -2200,6 +2330,18 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
             setMilestoneStatus(__typeMapper.readString(__in, MilestoneStatus__typeInfo, java.lang.String.class));
         }
         __in.peekTag();
+        if (__typeMapper.isElement(__in, NetworkSerialNumber1__c__typeInfo)) {
+            setNetworkSerialNumber1__c(__typeMapper.readString(__in, NetworkSerialNumber1__c__typeInfo, java.lang.String.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, NetworkSerialNumber2__c__typeInfo)) {
+            setNetworkSerialNumber2__c(__typeMapper.readString(__in, NetworkSerialNumber2__c__typeInfo, java.lang.String.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, NetworkSerialNumber3__c__typeInfo)) {
+            setNetworkSerialNumber3__c(__typeMapper.readString(__in, NetworkSerialNumber3__c__typeInfo, java.lang.String.class));
+        }
+        __in.peekTag();
         if (__typeMapper.isElement(__in, OpenActivities__typeInfo)) {
             setOpenActivities((com.sforce.soap.enterprise.QueryResult)__typeMapper.readObject(__in, OpenActivities__typeInfo, com.sforce.soap.enterprise.QueryResult.class));
         }
@@ -2268,8 +2410,16 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
             setRecord_Type__c(__typeMapper.readString(__in, Record_Type__c__typeInfo, java.lang.String.class));
         }
         __in.peekTag();
+        if (__typeMapper.isElement(__in, Sales_Account__c__typeInfo)) {
+            setSales_Account__c((java.lang.Double)__typeMapper.readObject(__in, Sales_Account__c__typeInfo, java.lang.Double.class));
+        }
+        __in.peekTag();
         if (__typeMapper.isElement(__in, Shares__typeInfo)) {
             setShares((com.sforce.soap.enterprise.QueryResult)__typeMapper.readObject(__in, Shares__typeInfo, com.sforce.soap.enterprise.QueryResult.class));
+        }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, Shipping_Date__c__typeInfo)) {
+            setShipping_Date__c((java.util.Calendar)__typeMapper.readObject(__in, Shipping_Date__c__typeInfo, java.util.Calendar.class));
         }
         __in.peekTag();
         if (__typeMapper.isElement(__in, SlaExitDate__typeInfo)) {
@@ -2351,6 +2501,8 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(AccountId)+"'\n");
       sb.append(" ActivityHistories=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(ActivityHistories)+"'\n");
+      sb.append(" Agreement_Numer__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(Agreement_Numer__c)+"'\n");
       sb.append(" Asset=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Asset)+"'\n");
       sb.append(" AssetId=");
@@ -2459,6 +2611,12 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(MDS_Status__c)+"'\n");
       sb.append(" MilestoneStatus=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(MilestoneStatus)+"'\n");
+      sb.append(" NetworkSerialNumber1__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(NetworkSerialNumber1__c)+"'\n");
+      sb.append(" NetworkSerialNumber2__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(NetworkSerialNumber2__c)+"'\n");
+      sb.append(" NetworkSerialNumber3__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(NetworkSerialNumber3__c)+"'\n");
       sb.append(" OpenActivities=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(OpenActivities)+"'\n");
       sb.append(" Origin=");
@@ -2493,8 +2651,12 @@ public class Case extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(RecordTypeId)+"'\n");
       sb.append(" Record_Type__c=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Record_Type__c)+"'\n");
+      sb.append(" Sales_Account__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(Sales_Account__c)+"'\n");
       sb.append(" Shares=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Shares)+"'\n");
+      sb.append(" Shipping_Date__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(Shipping_Date__c)+"'\n");
       sb.append(" SlaExitDate=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(SlaExitDate)+"'\n");
       sb.append(" SlaStartDate=");

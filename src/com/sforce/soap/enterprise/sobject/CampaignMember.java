@@ -351,6 +351,26 @@ public class CampaignMember extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : leadScoring__Campaign_Score__c of type {http://www.w3.org/2001/XMLSchema}double
+     * java type: java.lang.Double
+     */
+    private static final com.sforce.ws.bind.TypeInfo leadScoring__Campaign_Score__c__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","leadScoring__Campaign_Score__c","http://www.w3.org/2001/XMLSchema","double",0,1,true);
+
+    private boolean leadScoring__Campaign_Score__c__is_set = false;
+
+    private java.lang.Double leadScoring__Campaign_Score__c;
+
+    public java.lang.Double getLeadScoring__Campaign_Score__c() {
+      return leadScoring__Campaign_Score__c;
+    }
+
+    public void setLeadScoring__Campaign_Score__c(java.lang.Double leadScoring__Campaign_Score__c) {
+      this.leadScoring__Campaign_Score__c = leadScoring__Campaign_Score__c;
+      leadScoring__Campaign_Score__c__is_set = true;
+    }
+
+    /**
      */
     @Override
     public void write(javax.xml.namespace.QName __element,
@@ -383,6 +403,7 @@ public class CampaignMember extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeString(__out, LeadId__typeInfo, LeadId, LeadId__is_set);
        __typeMapper.writeString(__out, Status__typeInfo, Status, Status__is_set);
        __typeMapper.writeObject(__out, SystemModstamp__typeInfo, SystemModstamp, SystemModstamp__is_set);
+       __typeMapper.writeObject(__out, leadScoring__Campaign_Score__c__typeInfo, leadScoring__Campaign_Score__c, leadScoring__Campaign_Score__c__is_set);
     }
 
     @Override
@@ -464,6 +485,10 @@ public class CampaignMember extends com.sforce.soap.enterprise.sobject.SObject {
         if (__typeMapper.isElement(__in, SystemModstamp__typeInfo)) {
             setSystemModstamp((java.util.Calendar)__typeMapper.readObject(__in, SystemModstamp__typeInfo, java.util.Calendar.class));
         }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, leadScoring__Campaign_Score__c__typeInfo)) {
+            setLeadScoring__Campaign_Score__c((java.lang.Double)__typeMapper.readObject(__in, leadScoring__Campaign_Score__c__typeInfo, java.lang.Double.class));
+        }
     }
 
     @Override
@@ -504,6 +529,8 @@ public class CampaignMember extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Status)+"'\n");
       sb.append(" SystemModstamp=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(SystemModstamp)+"'\n");
+      sb.append(" leadScoring__Campaign_Score__c=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(leadScoring__Campaign_Score__c)+"'\n");
       sb.append("]\n");
       return sb.toString();
     }

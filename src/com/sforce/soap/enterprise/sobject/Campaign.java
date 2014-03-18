@@ -1051,6 +1051,26 @@ public class Campaign extends com.sforce.soap.enterprise.sobject.SObject {
     }
 
     /**
+     * element : leadScoring__Lead_Scoring_Rules__r of type {urn:enterprise.soap.sforce.com}QueryResult
+     * java type: com.sforce.soap.enterprise.QueryResult
+     */
+    private static final com.sforce.ws.bind.TypeInfo leadScoring__Lead_Scoring_Rules__r__typeInfo =
+      new com.sforce.ws.bind.TypeInfo("urn:sobject.enterprise.soap.sforce.com","leadScoring__Lead_Scoring_Rules__r","urn:enterprise.soap.sforce.com","QueryResult",0,1,true);
+
+    private boolean leadScoring__Lead_Scoring_Rules__r__is_set = false;
+
+    private com.sforce.soap.enterprise.QueryResult leadScoring__Lead_Scoring_Rules__r;
+
+    public com.sforce.soap.enterprise.QueryResult getLeadScoring__Lead_Scoring_Rules__r() {
+      return leadScoring__Lead_Scoring_Rules__r;
+    }
+
+    public void setLeadScoring__Lead_Scoring_Rules__r(com.sforce.soap.enterprise.QueryResult leadScoring__Lead_Scoring_Rules__r) {
+      this.leadScoring__Lead_Scoring_Rules__r = leadScoring__Lead_Scoring_Rules__r;
+      leadScoring__Lead_Scoring_Rules__r__is_set = true;
+    }
+
+    /**
      */
     @Override
     public void write(javax.xml.namespace.QName __element,
@@ -1118,6 +1138,7 @@ public class Campaign extends com.sforce.soap.enterprise.sobject.SObject {
        __typeMapper.writeObject(__out, SystemModstamp__typeInfo, SystemModstamp, SystemModstamp__is_set);
        __typeMapper.writeObject(__out, Tasks__typeInfo, Tasks, Tasks__is_set);
        __typeMapper.writeString(__out, Type__typeInfo, Type, Type__is_set);
+       __typeMapper.writeObject(__out, leadScoring__Lead_Scoring_Rules__r__typeInfo, leadScoring__Lead_Scoring_Rules__r, leadScoring__Lead_Scoring_Rules__r__is_set);
     }
 
     @Override
@@ -1339,6 +1360,10 @@ public class Campaign extends com.sforce.soap.enterprise.sobject.SObject {
         if (__typeMapper.isElement(__in, Type__typeInfo)) {
             setType(__typeMapper.readString(__in, Type__typeInfo, java.lang.String.class));
         }
+        __in.peekTag();
+        if (__typeMapper.isElement(__in, leadScoring__Lead_Scoring_Rules__r__typeInfo)) {
+            setLeadScoring__Lead_Scoring_Rules__r((com.sforce.soap.enterprise.QueryResult)__typeMapper.readObject(__in, leadScoring__Lead_Scoring_Rules__r__typeInfo, com.sforce.soap.enterprise.QueryResult.class));
+        }
     }
 
     @Override
@@ -1449,6 +1474,8 @@ public class Campaign extends com.sforce.soap.enterprise.sobject.SObject {
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Tasks)+"'\n");
       sb.append(" Type=");
       sb.append("'"+com.sforce.ws.util.Verbose.toString(Type)+"'\n");
+      sb.append(" leadScoring__Lead_Scoring_Rules__r=");
+      sb.append("'"+com.sforce.ws.util.Verbose.toString(leadScoring__Lead_Scoring_Rules__r)+"'\n");
       sb.append("]\n");
       return sb.toString();
     }
